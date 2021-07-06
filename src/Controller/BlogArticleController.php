@@ -7,29 +7,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArticleController extends AbstractController
+class BlogArticleController extends AbstractController
 {
-
     private $categories = [
-        1 => [
+        '1' => [
             "title" => "Politique",
             "content" => "Tous les articles liés à Jean Lassalle",
             "id" => 1,
             "published" => true,
         ],
-        2 => [
+        '2' => [
             "title" => "Economie",
             "content" => "Les meilleurs tuyaux pour avoir DU FRIC",
             "id" => 2,
             "published" => true
         ],
-        3 => [
+        '3' => [
             "title" => "Securité",
             "content" => "Attention les étrangers sont très méchants",
             "id" => 3,
             "published" => false
         ],
-        4 => [
+        '4' => [
             "title" => "Ecologie",
             "content" => "Hummer <3",
             "id" => 4,
@@ -37,28 +36,25 @@ class ArticleController extends AbstractController
         ]
     ];
 
+
     /**
-     * @Route("/Articles", name="articleList")
+     * @Route("/Categories", name="categoryList")
      */
-    public function articleList()
+    public function categoryList()
     {
-        return $this->render('article_list.html.twig', [
-            'articles' =>$this->articles
+        return $this->render('blog-list.html.twig', [
+            'categories' => $this->categories
         ]);
     }
+
     /**
-     * @Route("/article/{id}", name="articleShow")
+     * @Route("/category/{id}", name="categoryShow")
      */
-    public function articleShow($id)
+    public function categoryShow($id)
     {
-        // j'utilise la méthode render de l'AbstractController
-        // pour récupérer un fichier Twig, le transformer en HTML
-        // et le renvoyer en réponse HTTP au navigateur
-        // Pour utiliser des variables dans le fichier twig, je dois
-        // lui passer un tableau en second parametre, avec toutes les
-        // variables que je veux utiliser
-        return $this->render('article_show.html.twig', [
-            'article'=>$this->articles[$id]
+
+        return $this->render('blog-show.html.twig', [
+            'category' => $this->categories[$id]
         ]);
     }
 }

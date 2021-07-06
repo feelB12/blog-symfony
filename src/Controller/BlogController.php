@@ -21,7 +21,7 @@ class BlogController extends AbstractController
     /**
      * @Route("/aboutus", name="About-Us")
      */
-    public function test()
+    public function aboutus()
     {
         // je retourne une réponse valide pour ma page Qui sommes nous
         // je retourne  la reponse dans le HTTPFoundation

@@ -1,0 +1,31 @@
+<?php
+{% extends 'base.html.twig'%}
+
+{% block metaTitle %}Blog Categories List
+{% endblock metaTitle%}
+{% block header %}
+            <h1>Welcome in blog list category</h1>
+{% endblock header %}
+{% block main %}
+<h1>Il y a {{ categories | lenght }} category of data base</h1>
+    <div class="articles-container">
+        {% for category in categories %}
+            {% if category.published %}
+                <article class="article>
+                {#
+                run link route blogShow.
+                this route asking wildcard 'id', so i feed it
+                with id category loop running.
+                #}
+                <a href={{ path('categoriesShow', {'id': category.id}) }}>
+                    <h2>{{ category.title | upper }}</h2>
+                </a>
+                <p>{{ category.content }}</p>
+                </article>
+            {% endif %}
+        {% endfor %}
+        </div>
+{% endblock main %}
+{% block footer %}
+<h1>GoodBye Bloggy</h1>
+{% endblock footer %}

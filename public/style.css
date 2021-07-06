@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+
+.header{
+    height: 50px;
+    width: 100%;
+    background-color: deepskyblue;
+    text-align: center;
+}
+
+.footer{
+    height: 50px;
+    width: 100%;
+    background-color: yellowgreen;
+    text-align: center;
+}
+
+.articles-container {
+    display: flex;
+    flex-warp: warp;
+}
+
+.article{
+    width:50%;
+    border: 1px solid black;
+}
