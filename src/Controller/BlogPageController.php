@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class BlogController extends AbstractController
+class BlogPageController extends AbstractController
 {
     /**
      * @Route("/", name="home")
@@ -19,7 +19,7 @@ class BlogController extends AbstractController
         return new Response( 'Home Sweet Home');
     }
     /**
-     * @Route("/aboutus", name="About-Us")
+     * @Route("/aboutus", name="Aboutus")
      */
     public function aboutus()
     {

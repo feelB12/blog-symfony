@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BlogArticleController extends AbstractController
 {
-    private $categories = [
+    private $category = [
         '1' => [
             "title" => "Politique",
             "content" => "Tous les articles liés à Jean Lassalle",
@@ -38,23 +38,23 @@ class BlogArticleController extends AbstractController
 
 
     /**
-     * @Route("/Categories", name="categoryList")
+     * @Route("/categories", name="categories")
      */
     public function categoryList()
     {
         return $this->render('blog-list.html.twig', [
-            'categories' => $this->categories
+            'category' => $this->category
         ]);
     }
 
     /**
-     * @Route("/category/{id}", name="categoryShow")
+     * @Route("/category/{id}", name="category")
      */
     public function categoryShow($id)
     {
 
         return $this->render('blog-show.html.twig', [
-            'category' => $this->categories[$id]
+            'category' => $this->category[$id]
         ]);
     }
 }

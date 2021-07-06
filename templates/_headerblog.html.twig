@@ -7,6 +7,18 @@
 </head>
 <body>
 <header class="header">
-    <h1>Welcome in blog list article</h1>
+    <li><h1>{{ category.title }}</h1></li>
+    <li><a href={{ path('categoriesShow', {'id': category.id}) }}>
+            <h2>{{ category.title | upper }}</h2>
+        </a></li>
+    <img class="resp" alt="flip" href="{{ asset('flip.png') }}">
+    <nav>
+        <ul>
+
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </nav>
 </header>
 <main>
