@@ -3,10 +3,11 @@
 
 namespace App\Entity;
 
+use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass=ArticleRepository::class)
  */
 class Article
 {
@@ -33,9 +34,21 @@ class Article
     private $createdAt;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $isPublished;
+
+    public function getIsPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished(?bool $isPublished): self
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
+    }
 
     /**
      * @return mixed
@@ -92,21 +105,4 @@ class Article
     {
         $this->createdAt = $createdAt;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getIsPublished()
-    {
-        return $this->isPublished;
-    }
-
-    /**
-     * @param mixed $isPublished
-     */
-    public function setIsPublished($isPublished): void
-    {
-        $this->isPublished = $isPublished;
-    }
-
 }

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block metaTitle %}
+    Article List
+{% endblock metaTitle %}
+
+
+{% block main %}
+    <h1>There is  {{ articles | length }} articles in my beautifull DATABASE</h1>
+    <div class="articles-container">
+        {% for article in articles %}
+            {% if article.isPublished %}
+                <article class="article">
+                    <h2>{{ article.title | upper }}</h2>
+                    <p>{{ article.content }}</p>
+                </article>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock main %}
