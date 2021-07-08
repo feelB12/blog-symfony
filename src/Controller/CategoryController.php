@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -16,17 +17,17 @@ class CategoryController extends AbstractController
      */
     public function categoryList(CategoryRepository $categoryRepository)
     {
-        // je dois faire une requête SQL SELECT en bdd
-        // sur la table category
-        // La classe qui me permet de faire des requêtes SELECT est CategoryRepository
-        // donc je dois instancier cette classe
-        // pour ça, j'utilise l'autowire (je place la classe en argument du controleur,
-        // suivi de la variable dans laquelle je veux que sf m'instancie la classe
+        // Request SQL SELECT on DB
+        // on category table
+        // class do request SELECT on CategoryRepository
+        // inst class
+        // use autowire (classe argu controller,
+        // following var who want sf inst class
         $categories= $categoryRepository->findAll();
         //find
         //findOneBy
 
-        return $this->render('category-list.html.twig', [
+        return $this->render('category-List.html.twig', [
             'categories' => $categories
         ]);
     }
@@ -36,10 +37,16 @@ class CategoryController extends AbstractController
     public function categoryShow($id, CategoryRepository $categoryRepository)
 
     {
-        // afficher un Category en fonction  de l'id renseigné dans l'url (en wildcard)
+        // show Category from id in url (in wildcard)
         $category = $categoryRepository->find($id);
 
-        return $this->render('category-show.html.twig',[
+        // if category not found, return exception (error)
+        // showing 404
+        if (is_null($category)) {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->render('category-Show.html.twig',[
             'category' => $category
         ]);
     }

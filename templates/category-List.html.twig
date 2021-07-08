@@ -4,16 +4,14 @@
     Category List
 {% endblock metaTitle %}
 
-
 {% block main %}
     <h1>There is  {{ category | length }} Categories in my beautiful DATABASE</h1>
-    <div class="articles-container">
+    <div class="category-container">
         {% for category in categories %}
             {% if category.isPublished %}
-        <a href={{ path('categoriesShow', {'id': category.id}) }}>
-                <article class="article">
+                <article class="category">
                     <h2>{{ category.title | upper }}</h2>
-                    <p>{{ category.content }}</p>
+                    <a href={{ path('categoryShow', {'id': category.id}) }}>See more</a>
                 </article>
             {% endif %}
         {% endfor %}

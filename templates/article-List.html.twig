@@ -4,7 +4,6 @@
     Article List
 {% endblock metaTitle %}
 
-
 {% block main %}
     <h1>There is  {{ articles | length }} articles in my beautiful DATABASE</h1>
     <div class="articles-container">
@@ -12,6 +11,7 @@
             {% if article.isPublished %}
                 <article class="article">
                     <h2>{{ article.title | upper }}</h2>
+                    <a href="{{ path('articleShow', {'id': article.id }) }}">See more</a>
                     <p>{{ article.content }}</p>
                 </article>
             {% endif %}
