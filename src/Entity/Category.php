@@ -22,6 +22,16 @@ class Category
      */
     private $title;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $create_at;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_published;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +45,30 @@ class Category
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getCreateAt(): ?\DateTimeInterface
+    {
+        return $this->create_at;
+    }
+
+    public function setCreateAt(\DateTimeInterface $create_at): self
+    {
+        $this->create_at = $create_at;
+
+        return $this;
+    }
+
+    public function getIsPublished(): ?bool
+    {
+        return $this->is_published;
+    }
+
+    public function setIsPublished(bool $is_published): self
+    {
+        $this->is_published = $is_published;
 
         return $this;
     }
