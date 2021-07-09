@@ -5,8 +5,8 @@ namespace App\Controller;
 
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
@@ -48,10 +48,13 @@ class ArticleController extends AbstractController
      * @Route("/search", name="articleSearch")
      */
     // create function to search a term in article
-    public function search(ArticleRepository $articleRepository)
+    public function search(ArticleRepository $articleRepository, Request $request)
     {
+
+        $term = $request->query->get('q');
+
         //$term is the term we want to search in article
-        $term = 'of';
+        //$term = 'of';
 
         //method can search in article repository the term searched
         $articles = $articleRepository->searchByTerm($term);
