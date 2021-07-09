@@ -19,6 +19,29 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    // function catch var term to make research
+
+    public function searchByTerm($term)
+    {
+        //function building query to search in article
+        $queryBuilder = $this->createQueryBuilder('article');
+
+        // DQL search, to  and to search term we looking for
+        $query = $queryBuilder
+            // make the search in article
+            ->select('article')
+            // we
+            ->where('article.content LIKE :term')
+            //
+            ->setParameter('term', '%'.$term.'%')
+
+            //transform DQL en in SQL research
+            ->getQuery();
+
+        // return var query result
+        return $query->getResult();
+    }
+
     // /**
     //  * @return Article[] Returns an array of Category objects
     //  */
