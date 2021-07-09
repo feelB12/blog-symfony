@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,12 +26,17 @@ class Category
     /**
      * @ORM\Column(type="datetime")
      */
-    private $create_at;
+    private $createdAt;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="category")
      */
-    private $is_published;
+    private $articles;
+
+    public function __construct()
+    {
+        $this->articles =new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -49,27 +55,30 @@ class Category
         return $this;
     }
 
-    public function getCreateAt(): ?\DateTimeInterface
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
     {
-        return $this->create_at;
+        return $this->createdAt;
     }
 
-    public function setCreateAt(\DateTimeInterface $create_at): self
+    /**
+     * @param mixed $createdAt
+     */
+    public function setCreatedAt($createdAt): void
     {
-        $this->create_at = $create_at;
-
-        return $this;
+        $this->createdAt = $createdAt;
     }
 
-    public function getIsPublished(): ?bool
+    /**
+     * @return mixed
+     */
+    public function getArticles()
     {
-        return $this->is_published;
+        return $this->articles;
     }
 
-    public function setIsPublished(bool $is_published): self
-    {
-        $this->is_published = $is_published;
 
-        return $this;
-    }
+
 }

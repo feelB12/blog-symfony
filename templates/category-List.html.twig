@@ -5,15 +5,14 @@
 {% endblock metaTitle %}
 
 {% block main %}
-    <h1>There is  {{ category | length }} Categories in my beautiful DATABASE</h1>
+    <h1>There is  {{ categories | length }} Categories in my beautiful DATABASE</h1>
     <div class="category-container">
         {% for category in categories %}
-            {% if category.isPublished %}
+
                 <article class="category">
                     <h2>{{ category.title | upper }}</h2>
                     <a href={{ path('categoryShow', {'id': category.id}) }}>See more</a>
                 </article>
-            {% endif %}
         {% endfor %}
     </div>
 {% endblock main %}
