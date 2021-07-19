@@ -31,11 +31,15 @@ class ArticleRepository extends ServiceEntityRepository
             // make the search in article
             ->select('article')
             // we
-            ->where('article.content LIKE :term')
-            //
-            ->setParameter('term', '%'.$term.'%')
+            ->leftJoin('article.category', 'category')
+            ->leftJoin('article.tag', 'tag')
 
-            //transform DQL en in SQL research
+            ->where('article.content LIKE :term')
+            ->orWhere('article.title LIKE :term')
+            ->orWhere('category.title LIKE :term')
+            ->orWhere('tag.title LIKE :term')
+
+            ->setParameter('term', '%'.$term.'%')
             ->getQuery();
 
         // return var query result

@@ -5,6 +5,7 @@ namespace App\Entity;
 
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -20,11 +21,18 @@ class Article
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="REMPLI LE TITRE FICHTRE")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(
+     *     min=5,
+     *     max=30,
+     *     minMessage="Vous devez écrire plus de 5 caractères",
+     *     maxMessage="Vous devez écrire moins de 20  caractères"
+     * )
      */
     private $content;
 
@@ -43,10 +51,15 @@ class Article
      */
     private $category;
 
+    ///**
+     //* @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="tags")
+    // */
+    //private $tags;
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="tags")
+     * @ORM\ManyToOne(targetEntity=Tag::class, inversedBy="articles")
      */
-    private $tags;
+    private $tag;
+
 
     /**
      * @return mixed
@@ -139,6 +152,18 @@ class Article
     public function setCategory($category): void
     {
         $this->category = $category;
+    }
+
+    public function getTag(): ?Tag
+    {
+        return $this->tag;
+    }
+
+    public function setTag(?Tag $tag): self
+    {
+        $this->tag = $tag;
+
+        return $this;
     }
 
 }

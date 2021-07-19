@@ -45,7 +45,7 @@ class ArticleController extends AbstractController
         ]);
     }
     /**
-     * @Route("/search", name="articleSearch")
+     * @Route("/search", name="search")
      */
     // create function to search a term in article
     public function search(ArticleRepository $articleRepository, Request $request)
@@ -60,7 +60,7 @@ class ArticleController extends AbstractController
         $articles = $articleRepository->searchByTerm($term);
 
         // show the resarch in article_search and the result of the search
-        return $this->render('article_search.html.twig', [
+        return $this->render('article-Search.html.twig', [
             'articles' => $articles,
             'term' => $term
         ]);

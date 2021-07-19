@@ -1,0 +1,34 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block main %}
+
+    {#    {% form_theme articleForm 'bootstrap_4_layout.html.twig' %}#}
+    {#    {{ form(articleForm) }}#}
+
+    {{ form_start(articleForm) }}
+
+    {{ form_label(articleForm.title) }}
+    {{ form_widget(articleForm.title) }}
+
+    <div class="errors">
+        {{ form_errors(articleForm.title) }}
+    </div>
+
+    {{ form_label(articleForm.content, 'Contenu', {'label_attr': {'class': 'form_article_content_input'}}) }}
+    {{ form_widget(articleForm.content, {'attr': {'class': 'form-control', 'placeholder': 'remplissez le contenu'}}) }}
+    {{ form_errors(articleForm.content) }}
+
+    {{ form_label(articleForm.createdAt) }}
+    {{ form_widget(articleForm.createdAt) }}
+    {{ form_errors(articleForm.createdAt) }}
+
+    {{ form_label(articleForm.isPublished) }}
+    {{ form_widget(articleForm.isPublished) }}
+    {{ form_errors(articleForm.createdAt) }}
+
+    {{ form_widget(articleForm.submit, {'label': 'valider'}) }}
+
+    {{ form_end(articleForm) }}
+
+{% endblock %}
+
